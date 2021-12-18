@@ -14,7 +14,7 @@ width_to_focal[1241] = 718.856
 width_to_focal[1224] = 707.0493
 width_to_focal[1238] = 718.3351
 
-def my_read_scene_data(data_root, test_list, seq_length=3, step=1):
+def my_read_scene_date(data_root, test_list, seq_length=3, step=1):
     data_root = Path(data_root)
     im_files = []
     demi_length = (seq_length - 1) // 2
