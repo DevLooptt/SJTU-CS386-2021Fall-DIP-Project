@@ -9,7 +9,7 @@ from path import Path
 parser = argparse.ArgumentParser()
 parser.add_argument("dataset_dir", metavar='DIR',
                     help='path to original dataset')
-parser.add_argument("--dataset-format", type=str, required=True, choices=["kitti", "cityscapes"])
+parser.add_argument("--dataset-format", type=str, required=True, choices=["kitti", "cityscapes","football"])
 parser.add_argument("--static-frames", default=None,
                     help="list of imgs to discard for being static, if not set will discard them based on speed \
                     (careful, on KITTI some frames have incorrect speed)")
@@ -70,6 +70,12 @@ def main():
         data_loader = cityscapes_loader(args.dataset_dir,
                                         img_height=args.height,
                                         img_width=args.width)
+
+    if args.dataset_format == 'football':
+        from football_loader import football_loader
+        data_loader = football_loader(args.dataset_dir,
+                                      img_height=args.height,
+                                      img_width=args.width)
 
     print('Retrieving frames')
     Parallel(n_jobs=args.num_threads)(delayed(dump_example)(scene) for scene in tqdm(data_loader.scenes))

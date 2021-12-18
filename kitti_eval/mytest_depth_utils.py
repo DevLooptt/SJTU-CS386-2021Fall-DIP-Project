@@ -23,7 +23,7 @@ def my_read_scene_data(data_root, test_list, seq_length=3, step=1):
     print('getting test metadata ... ')
     for sample in tqdm(test_list):
         tgt_img_path = data_root/sample
-        date, scene, cam_id, _, index = sample[:-4].split('/')
+        date, scene, cam_id, _, index = sample[:-4].split('/') #TODO 这里针对kitti特定的文件名进行处理，需要修改以适配我们的数据集
 
         ref_imgs_path = [tgt_img_path.dirname()/'{:010d}.png'.format(int(index) + shift) for shift in shift_range]
 
@@ -45,7 +45,7 @@ class test_framework_KITTI(object):
     def __init__(self, root, test_files, seq_length=3, min_depth=1e-3, max_depth=100, step=1):
         self.root = root
         self.min_depth, self.max_depth = min_depth, max_depth
-        self.img_files = my_read_scene_date(self.root, test_files, seq_length, step) #TODO
+        self.img_files = my_read_scene_date(self.root, test_files, seq_length, step) 
         # self.calib_dirs, self.gt_files, self.img_files, self.displacements, self.cams = read_scene_data(self.root, test_files, seq_length, step)
 
     def __getitem__(self, i):
