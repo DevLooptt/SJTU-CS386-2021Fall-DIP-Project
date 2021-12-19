@@ -26,12 +26,12 @@ class football_loader(object):
         print('Total scenes collected: {}'.format(len(self.scenes)))
 
     def collect_scenes(self, city):
-        img_files = sorted(city.files('*.png')) #按照图片名称排序
+        img_files = sorted(city.files('*.jpg')) #按照图片名称排序
         scenes = {}
         connex_scenes = {}
         connex_scene_data_list = []
         for f in img_files:
-            scene_id,frame_id = f.basename().split('_')[1:3] #f.basename的格式为city_sceneid_frameid_.png
+            scene_id,frame_id = f.basename().split('_')[1:3] #f.basename的格式为city_sceneid_frameid_.jpg
             if scene_id not in scenes.keys():
                 scenes[scene_id] = []
             scenes[scene_id].append(frame_id)
@@ -120,7 +120,7 @@ class football_loader(object):
             cum_speed *= 0
 
     def load_image(self, city, scene_id, frame_id):
-        img_file = city/'{}_{}_{}_.png'.format(city.basename(),
+        img_file = city/'{}_{}_{}_.jpg'.format(city.basename(),
                                                           scene_id,
                                                           frame_id)
         if not img_file.isfile():
