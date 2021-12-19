@@ -104,7 +104,7 @@ parser.add_argument('--robust', dest='robust', action='store_true', help='train 
 parser.add_argument('--no-non-rigid-mask', dest='no_non_rigid_mask', action='store_true', help='will not use mask on loss of non-rigid flow')
 parser.add_argument('--joint-mask-for-depth', dest='joint_mask_for_depth', action='store_true', help='use joint mask from masknet and consensus mask for depth training')
 
-parser.add_argument('--fix-masknet', dest='fix_masknet', action='store_true', help='do not train posenet')
+parser.add_argument('--fix-masknet', dest='fix_masknet', action='store_true', help='do not train masknet')
 parser.add_argument('--fix-posenet', dest='fix_posenet', action='store_true', help='do not train posenet')
 parser.add_argument('--fix-flownet', dest='fix_flownet', action='store_true', help='do not train flownet')
 parser.add_argument('--fix-dispnet', dest='fix_dispnet', action='store_true', help='do not train dispnet')
