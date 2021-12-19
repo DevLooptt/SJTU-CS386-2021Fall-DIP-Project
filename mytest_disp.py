@@ -85,7 +85,7 @@ def main():
         h,w,_ = tgt_img.shape
         if (not args.no_resize) and (h != args.img_height or w != args.img_width):
             # 这里由于scipy版本问题用numpy进行替换
-            tgt_img = numpy.array(Image.fromarray(arr).resize(tgt_img, (args.img_height, args.img_width))).astype(np.float32)
+            tgt_img = numpy.array(Image.fromarray((tgt_img*255).astype(np.uint8)).resize( (args.img_height, args.img_width))).astype(np.float32)
             # tgt_img = imresize(tgt_img, (args.img_height, args.img_width)).astype(np.float32)
             # ref_imgs = [imresize(img, (args.img_height, args.img_width)).astype(np.float32) for img in ref_imgs]
 
