@@ -85,7 +85,7 @@ def main():
         h,w,_ = tgt_img.shape
         if (not args.no_resize) and (h != args.img_height or w != args.img_width):
             # 这里由于scipy版本问题用numpy进行替换
-            tgt_img = numpy.array(Image.fromarray((tgt_img*255).astype(np.uint8)).resize( (args.img_height, args.img_width))).astype(np.float32)
+            tgt_img = np.array(Image.fromarray((tgt_img*255).astype(np.uint8)).resize( (args.img_width,args.img_height))).astype(np.float32)
             # tgt_img = imresize(tgt_img, (args.img_height, args.img_width)).astype(np.float32)
             # ref_imgs = [imresize(img, (args.img_height, args.img_width)).astype(np.float32) for img in ref_imgs]
 
@@ -160,7 +160,7 @@ def main():
 
     # 将深度预测图像以npy格式保存在output_dir/'predictions.npy'中
     if args.output_dir is not None:
-        np.save(output_dir/'predictions.npy', predictions)
+        np.save(args.output_dir+'/predictions.npy', predictions)
     
 # def interp_gt_disp(mat, mask_val=0):
 #     mat[mat==mask_val] = np.nan
